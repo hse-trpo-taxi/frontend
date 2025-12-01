@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 't2-Rooftop';
+    src: url('t2-Rooftop-Medium.woff2');
+}
+
+@font-face {
+    font-family: 't2-Rooftop-regular';
+    src: url('t2-Rooftop-Regular.woff2');
+}
+
+@font-face {
+    font-family: 'tuffy';
+    src: url('Tuffy-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'wix';
+    src: url('WixMadeforDisplay-Bold.ttf');
+}
