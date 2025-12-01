@@ -15,7 +15,7 @@ export const Menu = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    
+
     const tab = 'ml-auto mr-auto w-[40px] h-[40px] rounded-[11px] flex justify-center';
     const white = 'bg-white';
     const blue = 'cursor-pointer';
@@ -24,48 +24,45 @@ export const Menu = () => {
     const [activeTab, setActiveTab] = useState<TabType>('home');
 
     useEffect(() => {
-        switch(location.pathname){
-            case '/drivers':
-                setActiveTab('drivers');
-                break;
-            case '/orders':
-                setActiveTab('orders');
-                break;
-            default:
-                setActiveTab('home');
+        if (location.pathname.startsWith('/drivers')) {
+            setActiveTab('drivers')
+        } else if (location.pathname.startsWith('/orders')) {
+            setActiveTab('orders')
+        } else {
+            setActiveTab('home')
         }
     }, [location.pathname])
 
     return (
-       <div className={`bg-[#0D162D] h-[100%] rounded-[24px] w-[98px] flex flex-col ${shadow}`}>
-            <img src={logo} className='ml-auto mr-auto pt-[30px]'/>
+        <div className={`bg-[#0D162D] h-[100%] rounded-[24px] w-[98px] flex flex-col ${shadow}`}>
+            <img src={logo} className='ml-auto mr-auto pt-[30px]' />
             <div className="flex flex-col mt-auto mb-auto">
-                <div className={`${tab} ${activeTab === 'home' ? white : blue}`} 
-                    onClick={() => {navigate('/'); setActiveTab('home')}}>
+                <div className={`${tab} ${activeTab === 'home' ? white : blue}`}
+                    onClick={() => { navigate('/'); setActiveTab('home') }}>
                     {activeTab === 'home' ? (
-                        <img src={homeBlue} className='w-[20px]'/>
-                    ): (
-                        <img src={home} className='w-[20px]'/>
+                        <img src={homeBlue} className='w-[20px]' />
+                    ) : (
+                        <img src={home} className='w-[20px]' />
                     )}
                 </div>
                 <div className={`${tab} ${activeTab === 'drivers' ? white : blue} mt-[55px]`}
-                    onClick={() => {navigate('/drivers'); setActiveTab('drivers')}}>
+                    onClick={() => { navigate('/drivers'); setActiveTab('drivers') }}>
                     {activeTab === 'drivers' ? (
-                        <img src={driversBlue} className='w-[22px]'/>
+                        <img src={driversBlue} className='w-[22px]' />
                     ) : (
-                        <img src={drivers} className='w-[22px]'/>  
+                        <img src={drivers} className='w-[22px]' />
                     )}
                 </div>
                 <div className={`${tab} ${activeTab === 'orders' ? white : blue} mt-[55px]`}
-                    onClick={() => {navigate('/orders'); setActiveTab('orders')}}>
+                    onClick={() => { navigate('/orders'); setActiveTab('orders') }}>
                     {activeTab === 'orders' ? (
-                        <img src={ordersBlue} className='w-[20px]'/>
+                        <img src={ordersBlue} className='w-[20px]' />
                     ) : (
-                        <img src={orders} className='w-[20px]'/>
+                        <img src={orders} className='w-[20px]' />
                     )}
                 </div>
             </div>
-            <img src={logOut} className='cursor-pointer ml-auto mr-auto mt-auto mb-[30px]'/>
+            <img src={logOut} className='cursor-pointer ml-auto mr-auto mt-auto mb-[30px]' />
         </div>
     )
 }

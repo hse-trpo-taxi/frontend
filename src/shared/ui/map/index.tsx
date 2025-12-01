@@ -1,15 +1,27 @@
-import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
+import { YMaps, Map, Placemark, Polyline } from "@pbe/react-yandex-maps";
+import type { Coord, Point } from "../../../entities/map/model/map-type";
 
-const points = [
-  { id: 1, coords: [55.751244, 37.618423] }, 
-  { id: 2, coords: [55.765, 37.61] },
-  { id: 3, coords: [55.73, 37.6] },
-  { id: 4, coords: [55.74, 37.67] },
-  { id: 5, coords: [55.78, 37.7] },
-  { id: 6, coords: [55.72, 37.55] },
-];
+type RouteProps = {
+  start: Coord;
+  end: Coord;
+  carCoords?: Coord;
+};
 
-export const MapComponent = () => {
+type MapComponentProps = {
+  mode: "points" | "route";
+  points?: Point[];
+  route?: RouteProps;
+  center?: Coord;
+  zoom?: number;
+};
+
+export const MapComponent = ({
+  mode,
+  points = [],
+  route,
+  center = [55.751244, 37.618423],
+  zoom = 10,
+}: MapComponentProps) => {
   return (
     <div
       style={{
@@ -19,14 +31,18 @@ export const MapComponent = () => {
         overflow: "hidden",
       }}
     >
-      <YMaps>
+      <YMaps
+        query={{
+          apikey: '0ab81fca-790d-4c04-a89b-8b4e60094e4d',
+          lang: "ru_RU"
+        }}>
         <Map
           defaultState={{
-            center: [55.751244, 37.618423], 
-            zoom: 10,
+            center,
+            zoom,
           }}
           options={{
-            suppressMapOpenBlock: true, 
+            suppressMapOpenBlock: true,
             yandexMapDisablePoiInteractivity: true,
             copyrightLogoVisible: false,
             copyrightProvidersVisible: false,
@@ -36,16 +52,56 @@ export const MapComponent = () => {
           height="100%"
           modules={["control.ZoomControl", "control.FullscreenControl"]}
         >
-          {points.map((p) => (
-            <Placemark
-              key={p.id}
-              geometry={p.coords}
-              options={{
-                preset: "islands#blueCircleIcon", 
-                iconColor: "#2563eb",
-              }}
-            />
-          ))}
+          {mode === "points" &&
+            points.map((p) => (
+              <Placemark
+                key={p.id}
+                geometry={p.coords}
+                options={{
+                  preset: "islands#blueCircleIcon",
+                  iconColor: "#2563eb",
+                }}
+              />
+            ))}
+
+          {mode === "route" && route && (
+            <>
+              <Polyline
+                geometry={[route.start, route.end]}
+                options={{
+                  strokeColor: "#0D162D",
+                  strokeWidth: 3,
+                  strokeOpacity: 0.8,
+                  strokeStyle: "solid",
+                }}
+              />
+
+              <Placemark
+                geometry={route.start}
+                options={{
+                  preset: "islands#circleIcon",
+                  iconColor: "#0D162D",
+                }}
+              />
+
+              <Placemark
+                geometry={route.end}
+                options={{
+                  preset: "islands#circleIcon",
+                  iconColor: "#1049D9",
+                }}
+              />
+
+              {route.carCoords && (
+                <Placemark
+                  geometry={route.carCoords}
+                  options={{
+                    iconColor: "#0D162D",
+                  }}
+                />
+              )}
+            </>
+          )}
         </Map>
       </YMaps>
     </div>

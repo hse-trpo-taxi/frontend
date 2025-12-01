@@ -1,31 +1,31 @@
 import { useState } from 'react'
+import { ORDER_STATUSES, type OrderStatus } from '../model/orders-statuses'
 import { TableNavigation } from '../../../shared/ui/table-navigation'
-import { DRIVER_STATUSES, type DriverStatus } from '../model/drivers-statuses'
 import { TableWithPagination } from '../../../shared/ui/table-with-pagination/table-with-pagination'
-import { driversColumns } from '../model/drivers-columns'
+import { ordersColumns } from '../model/orders-columns'
 
-export const DriversTable = () => {
-  const [currentStatus, setCurrentStatus] = useState<DriverStatus>('Все')
+export const OrderTable = () => {
+  const [currentStatus, setCurrentStatus] = useState<OrderStatus>('Все')
 
   const [page, setPage] = useState(0)
   const [pageSize, setPageSize] = useState(25)
 
   return (
     <div>
-      <h1 className="text-[24px] mb-[20px] w-[100%]">Водители</h1>
+      <h1 className="text-[24px] mb-[20px] w-[100%]">Заказы</h1>
       <TableNavigation
-        name={DRIVER_STATUSES}
+        name={ORDER_STATUSES}
         currnet={currentStatus}
         setCurrent={setCurrentStatus}
       />
       <div className="mt-[20px]">
         <TableWithPagination
-          name="Нет доступных водителей"
+          name="Нет доступных заказов"
           data={[]}
-          columns={driversColumns}
+          columns={ordersColumns}
           isLoading={false}
-          onRefresh={() => {}}
-          onRowClick={() => {}}
+          onRefresh={() => { }}
+          onRowClick={() => { }}
           page={page}
           setPage={setPage}
           pageSize={pageSize}
