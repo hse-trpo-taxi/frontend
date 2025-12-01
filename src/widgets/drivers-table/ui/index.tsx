@@ -30,8 +30,8 @@ export const DriversTable = () => {
           setPage={setPage}
           pageSize={pageSize}
           setPageSize={setPageSize}
-          rowCount={0}
-          totalPage={0}
+          rowCount={20}
+          totalPage={1}
         />
       </div>
     </div>

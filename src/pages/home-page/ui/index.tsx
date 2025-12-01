@@ -15,7 +15,7 @@ export const HomePage = () => {
       </div>
 
       <div className="flex-1 flex flex-col min-h-0 mt-[20px]">
-        <div className="flex gap-[20px] h-[220px]">
+        <div className="flex gap-[10px] h-[220px]">
           <div className="flex-1">
             <DriversPieChart />
           </div>
