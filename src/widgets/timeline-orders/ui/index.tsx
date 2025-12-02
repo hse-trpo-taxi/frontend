@@ -20,10 +20,18 @@ const data: PointOrder[] = [
         from: 'ул. Пионерская, 22',
         to: 'Покровский бульвар, 18',
     },
+    {
+        id: 4,
+        orderNumber: '984203',
+        from: 'ул. Ленина, 10',
+        to: 'пр-т Мира, 25',
+    },
 ]
 
-export const OrdersBlock = () => (
-    <div className="p-4">
-        <Timeline items={data} />
-    </div>
-)
+export const OrdersBlock = () => {
+    return (
+        < div className="p-4" >
+            <Timeline items={data} />
+        </ div>
+    )
+}

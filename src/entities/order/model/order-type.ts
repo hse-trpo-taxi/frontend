@@ -2,7 +2,7 @@ export interface IOrderTable {
   id: number
   firstAddress: string
   secondAddress: string
-  driver: {
+  Driver: {
     id: number | string
     name: string
   }
@@ -10,8 +10,8 @@ export interface IOrderTable {
 }
 
 export type PointOrder = {
-    id: string | number
-    orderNumber: string
-    from: string
-    to: string
+  id: string | number
+  orderNumber: string
+  from: string
+  to: string
 }

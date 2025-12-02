@@ -1,9 +1,11 @@
+import type { DbDriverStatus } from "../../../widgets/drivers-table/model/drivers-statuses";
+
 export interface IDriverTable {
     id: string | number;
     name: string;
-    status: string;
+    status: DbDriverStatus;
     phone: number;
-    timeWork: number;
+    time_work: number;
 }
 
 export interface IDriverQuery {
@@ -22,4 +24,37 @@ export interface IDriverQuery {
     passport: number,
     snils: number,
     inn: number
+}
+
+export interface IDriverSingle {
+    car: {
+        number: number,
+        model: string,
+        mileage: number,
+        scoreSystem: number,
+        scoreUsers: number
+    },
+    driver: {
+        name: string,
+        phone: string,
+        status: DbDriverStatus,
+        scoreDriver: number,
+        passport: number,
+        snils: number,
+        inn: number
+    }
+}
+
+export interface IDriverMap {
+    Info: {
+        time: number,
+        passengers: number,
+        timeClose: number
+    },
+    x: number,
+    y: number
+}
+
+export interface ITimeTable {
+    date: Date;
 }

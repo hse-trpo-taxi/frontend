@@ -1,9 +1,7 @@
-import { YMaps, Map, Placemark, Polyline } from "@pbe/react-yandex-maps";
+import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
 import type { Coord, Point } from "../../../entities/map/model/map-type";
 
 type RouteProps = {
-  start: Coord;
-  end: Coord;
   carCoords?: Coord;
 };
 
@@ -66,32 +64,6 @@ export const MapComponent = ({
 
           {mode === "route" && route && (
             <>
-              <Polyline
-                geometry={[route.start, route.end]}
-                options={{
-                  strokeColor: "#0D162D",
-                  strokeWidth: 3,
-                  strokeOpacity: 0.8,
-                  strokeStyle: "solid",
-                }}
-              />
-
-              <Placemark
-                geometry={route.start}
-                options={{
-                  preset: "islands#circleIcon",
-                  iconColor: "#0D162D",
-                }}
-              />
-
-              <Placemark
-                geometry={route.end}
-                options={{
-                  preset: "islands#circleIcon",
-                  iconColor: "#1049D9",
-                }}
-              />
-
               {route.carCoords && (
                 <Placemark
                   geometry={route.carCoords}
