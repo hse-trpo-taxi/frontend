@@ -1,13 +1,12 @@
 import { useState } from 'react'
-import { ORDER_STATUSES, type OrderStatus } from '../model/orders-statuses'
-import { TableNavigation } from '../../../shared/ui/table-navigation'
+// import { type OrderStatus } from '../model/orders-statuses'
 import { TableWithPagination } from '../../../shared/ui/table-with-pagination/table-with-pagination'
 import { ordersColumns } from '../model/orders-columns'
 import { useGetOrdersQuery } from '../../../entities/order/api/order-api'
 
 export const OrderTable = () => {
   const { data, isLoading, refetch } = useGetOrdersQuery({ Skip: 0, Limit: 20 })
-  const [currentStatus, setCurrentStatus] = useState<OrderStatus>('Все')
+  // const [currentStatus, setCurrentStatus] = useState<OrderStatus>('Все')
 
   const [page, setPage] = useState(0)
   const [pageSize, setPageSize] = useState(25)
